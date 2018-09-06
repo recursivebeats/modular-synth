@@ -6,7 +6,7 @@ require('../static/css/main.css')
 
 Vue.config.productionTip = false
 
-let app = new Vue({
+const app = new Vue({
   name: 'root',
   store,
   data () {
@@ -16,8 +16,8 @@ let app = new Vue({
   },
   methods: {
     handleKeyEvent(event) {
-    this.keys[event.key] = event
-    this.$store.dispatch('keyPress/editKeyPress', this.keys)
+      this.keys[event.key] = event
+      this.$store.dispatch('keyPress/editKeyPress', this.keys)
     }
   },
   render: h => h(App)

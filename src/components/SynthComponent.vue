@@ -61,6 +61,9 @@ export default {
       neighbours: { },
       moduleTypes: [
         'key-input',
+        'mono-osc',
+        'mono-filter',
+        'mono-amp',
         'audio-out'
       ]
     }
@@ -68,52 +71,7 @@ export default {
   computed: {
     connections() {
       return this.module.connections
-    },
-    // outgoingConnections () {
-    //   let conns = this.connections
-    //   let connObj = { }
-    //   for (let conn in conns) {
-    //     if(conns[conn].out) {
-    //       connObj[conn] = {...conns[conn]}
-    //     }
-    //   }
-    //   return connObj
-    // },
-    incomingConnections () {
-      let neighs = this.neighbours
-      let conns = this.connections
-      let connObj = { }
-      for (let conn in conns) {
-        console.log(conn)
-        let target = this.$store.getters['routing/modules'][neighs[conn]].connections
-        connObj[conn] = target
-      }
-      return connObj
-    },
-    // activeIncomingConnections () {
-    //   let connObj = { }
-    //   let inConns = this.incomingConnections
-    //   let conns = this.connections
-    //   for (let conn in inConns) {
-    //     if (this.connections[conn].in){
-    //       let name = this.neighbours[conn]
-    //       connObj[name] = this.$store.getters['routing/modules'][name]
-    //     }
-    //   }
-    //   return connObj
-    // },
-    // activeOutgoingConnections () {
-    //   let connObj = { }
-    //   let outConns = this.outgoingConnections
-    //   let conns = this.connections
-    //   for (let conn in outConns) {
-    //     if (this.connections[conn].out){
-    //       let name = this.neighbours[conn]
-    //       connObj[name] = this.$store.getters['routing/modules'][name]
-    //     }
-    //   }
-    //   return connObj
-    // }
+    }
   },
   created () {
     let neighboursObj = { }
@@ -257,57 +215,6 @@ export default {
     }
   }
 }
-
-// const buildConnectionObject = function(pos) {
-//   let connObj = { }
-//   if(pos[1] !== '1'){
-//     connObj.left = {
-//       active: true,
-//       in: true,
-//       out: false,
-//       inType: '',
-//       outType: '',
-//       latched: false,
-//       //target: this.neighbours['right']
-//     }
-//   }
-//   if(pos[1] !== '5'){
-//     connObj.right = {
-//       active: true,
-//       in: true,
-//       out: false,
-//       inType: '',
-//       outType: '',
-//       latched: false,
-//       //target: this.neighbours['left']
-//     }
-//   }
-//   if(pos[0] !== '1'){
-//     connObj.up = {
-//       active: true,
-//       in: true,
-//       out: false,
-//       inType: '',
-//       outType: '',
-//       latched: false,
-//       //target: this.neighbours['down']
-//     }
-//     //console.log(this.neighbours)
-//
-//   }
-//   if(pos[0] !== '5'){
-//     connObj.down = {
-//       active: true,
-//       in: true,
-//       out: false,
-//       inType: '',
-//       outType: '',
-//       latched: false,
-//       //target: this.neighbours['up']
-//     }
-//   }
-//   return connObj
-// }
 </script>
 
 <style>
@@ -385,21 +292,21 @@ export default {
 
   .down {
     grid-row: 10 / 12;
-    grid-column: 3 / 10;
+    grid-column: 5 / 8;
   }
 
   .up {
     grid-row: 1 / 3;
-    grid-column: 3 / 10;
+    grid-column: 5 / 8;
   }
 
   .left {
-    grid-row : 3 / 10;
+    grid-row : 5 / 8;
     grid-column: 1 / 3;
   }
 
   .right {
-    grid-row: 3 / 10;
+    grid-row: 5 / 8;
     grid-column: 10 / 12;
   }
 </style>
